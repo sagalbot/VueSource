@@ -1,0 +1,50 @@
+h2 {
+    margin-top: -3.1rem;
+    padding-top: 4.6rem;
+    display: flex;
+    align-items: center;
+}
+
+h2 small {
+    margin-left: .5rem;
+}
+
+h2 .header-anchor {
+    margin-top: 0;
+    float: none;
+    padding-right: 0;
+    margin-right: .25em;
+}
+
+h2 div {
+    display: flex;
+    align-items: center;
+}
+
+h2 > a {
+    display: flex;
+}
+
+h2 code {
+    display: inline-flex;
+    font-size: 1rem;
+    line-height: 1;
+    border-radius: 3px;
+    padding: .25rem;
+    margin-right: 1rem;
+    margin-left: .5rem;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.search-box {
+    width: 100%;
+}
+
+.search-box [type=search] {
+    width: 100%;
+}
