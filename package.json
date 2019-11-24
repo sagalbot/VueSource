@@ -14,6 +14,8 @@
   "author": "Jeff Sagal",
   "license": "MIT",
   "devDependencies": {
+    "@babel/core": "^7.7.4",
+    "@babel/node": "^7.7.4",
     "ast-types": "^0.13.2",
     "chalk": "^3.0.0",
     "cheerio": "^1.0.0-rc.3",
@@ -27,7 +29,8 @@
     "vue-docgen-api": "^4.0.5",
     "vue-template-compiler": "^2.6.10",
     "vuepress": "^1.2.0",
-    "webpack": "^4.41.2"
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
   },
   "config": {
     "commitizen": {

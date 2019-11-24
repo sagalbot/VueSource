@@ -1,12 +1,12 @@
-const path = require('path');
-const extendPageData = require('./extendPageData');
-const clientDynamicModules = require('./clientDynamicModules');
+import path from 'path';
+import extendPageData from './extendPageData';
+import clientDynamicModules from './clientDynamicModules';
 
 /**
  * @param src Absolute path to the file of the component being documented
  * @return {{enhanceAppFiles: *, name: string, clientDynamicModules: (function(): {name: string, content: string}), extendPageData: *}}
  */
-module.exports = ({src}) => ({
+export default ({src}) => ({
   name: '@vuesource/vuepress',
 
   /**
