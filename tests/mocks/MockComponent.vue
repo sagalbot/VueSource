@@ -1,11 +1,16 @@
 <template>
-  <section>
-    <slot name="header" :name="name">
-      <header>
-        <h1>{{ name }}</h1>
-      </header>
-    </slot>
-  </section>
+  <slot>
+    <section>
+      <slot name="header" :name="name" :foo="name">
+        <header>
+          <h1>{{ name }}</h1>
+        </header>
+      </slot>
+      <slot name="body" v-bind="bodySlotContent">
+        <p>Some lorem ipsum content of course.</p>
+      </slot>
+    </section>
+  </slot>
 </template>
 
 <script>
@@ -29,13 +34,14 @@ export default {
        * Do something with a different thing.
        *
        * @param {String} needle - the search query
-       * @param {Array} haystack
+       * @param {Object} config
+       * @param {String} config.haystack
        * @return {String}
        */
-      default(needle, {haystack}) {
-        return [].toString();
-      }
-    }
+      default (needle, {haystack}) {
+        return [haystack].toString();
+      },
+    },
   },
   mixins: [mixin],
   methods: {
@@ -47,13 +53,14 @@ export default {
      * @param {Object} thing - the thing you're gonna reduce.
      * @return {String} 'something else'
      */
-    reduce(thing) {
+    reduce (thing) {
       /**
        * @event reducing
        * @param {Object} thing - the thing being reduced
        */
       this.$emit('reducing', thing);
-      const reduced =  'something else';
+
+      const reduced = 'something else';
 
       /**
        * @event reduced
@@ -66,8 +73,20 @@ export default {
      * Make sure it happens quickly.
      * @public
      * @param {Object} doIt
+     * @param {Function} doIt.now
      */
     quickly: (doIt) => doIt.now(),
-  }
-}
+  },
+  computed: {
+    /**
+     * @return {{date: *, stuff: string}}
+     */
+    bodySlotContent () {
+      return {
+        'stuff': 'that you need to template',
+        'date': new Date,
+      };
+    },
+  },
+};
 </script>

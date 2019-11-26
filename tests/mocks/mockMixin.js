@@ -3,7 +3,6 @@ export default {
 
     /**
      * The size of the thing that you're referring to.
-     * @type {Number}
      */
     size: {
       type: Number,
