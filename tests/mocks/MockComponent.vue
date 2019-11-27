@@ -1,7 +1,7 @@
 <template>
   <slot>
     <section>
-      <slot name="header" :name="name" :foo="name">
+      <slot name="header" :name="name">
         <header>
           <h1>{{ name }}</h1>
         </header>

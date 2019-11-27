@@ -2,7 +2,7 @@ const bt = require('@babel/types');
 const docs = require('vue-docgen-api');
 const {NodePath} = require('ast-types');
 const {Documentation, ParseOptions, ComponentDoc} = require('vue-docgen-api');
-const additionalSlotProperties = require('./getAdditionalSlotProperties');
+const {getAdditionalSlotProperties} = require('./getAdditionalSlotProperties');
 
 /**
  * Generate an object of API documentation.
@@ -36,9 +36,7 @@ module.exports = async (src) => {
     ],
   });
 
-  const definitions = additionalSlotProperties(src);
-
-  documentation.slots = documentation.slots.map(slot => ({ ...slot, ...definitions[slot.name] }));
+  documentation.slots = getAdditionalSlotProperties(src);
 
   return documentation;
 };

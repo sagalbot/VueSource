@@ -1,0 +1,5 @@
+---
+api: props
+---
+
+<api-props />

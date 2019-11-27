@@ -1,4 +1,4 @@
-import generator from '../src/node/generator';
+import generator from '../src/server/generator';
 import path from 'path';
 
 describe('Parser E2E', () => {
@@ -9,10 +9,10 @@ describe('Parser E2E', () => {
 
     const component = await generator(file);
 
-    expect(component.slots).toBeTruthy();
-    expect(component.props).toBeTruthy();
-    expect(component.events).toBeTruthy();
-    expect(component.methods).toBeTruthy();
+    expect(Array.isArray(component.slots)).toBeTruthy();
+    expect(Array.isArray(component.props)).toBeTruthy();
+    expect(Array.isArray(component.events)).toBeTruthy();
+    expect(Array.isArray(component.methods)).toBeTruthy();
   });
 
 });

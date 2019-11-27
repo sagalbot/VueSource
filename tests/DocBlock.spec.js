@@ -1,4 +1,4 @@
-import Comment from '../src/node/Comment';
+import Comment from '../src/server/Comment';
 import { parse } from '@babel/parser';
 
 describe('CommentBlock', () => {
