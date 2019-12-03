@@ -1,6 +1,10 @@
-const generator = require('./node/generator');
+const generator = require('./generator');
 
-module.exports = async function (page, src) {
+function shouldInsertHeadersToPage (page) {
+
+}
+
+async function extendPageData (page, src) {
   const section = ['props', 'events', 'slots', 'methods'].find(
     section => page.frontmatter['api'] === section,
   );
@@ -37,3 +41,5 @@ module.exports = async function (page, src) {
     page.headers.push(...headers);
   }
 };
+
+module.exports = {extendPageData, shouldInsertHeadersToPage};

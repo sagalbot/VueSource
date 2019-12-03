@@ -1,0 +1,6 @@
+---
+api: events
+---
+
+<api-events />
+

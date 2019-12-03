@@ -4,18 +4,30 @@ const cheerio = require('cheerio');
 const pick = require('lodash/pick');
 const prettier = require('prettier');
 const compiler = require('vue-template-compiler');
-const Slots = require('./Slots');
 
 const t = require('@babel/types');
 const {parse} = require('@babel/parser');
 const traverse = require('@babel/traverse');
 
+/**
+ *
+ * @param {string} func
+ * @return {string}
+ */
+const removeFunctionParams = func => func.replace(/ *\([^)]*\) */g, '');
+
+/**
+ * @param {Node} element
+ * @param {Object} element.attribs - <attribute>: <value>
+ */
 function pickBindingsFromElement ({attribs}) {
-  return pick(
-    attribs,
-    Object.keys(attribs)
-      .filter(attr => attr.indexOf(':') === 0 || attr === 'v-bind'),
-  );
+  const isBinding = attr => attr.indexOf(':') === 0 || attr === 'v-bind';
+  const bindings = pick(attribs, Object.keys(attribs).filter(isBinding));
+
+  return Object.keys(bindings).map(attr => ({
+    bound: attr.replace(':', ''),
+    value: attribs[attr],
+  }));
 }
 
 function parseDocBlock (comment) {
@@ -52,30 +64,30 @@ function getSlotBindingComments (slots, {content}) {
   });
 }
 
+function parseComponent (pathToComponent) {
+  const file = fs.readFileSync(path.resolve(pathToComponent)).toString();
+  const compiled = compiler.parseComponent(file);
+  return {...compiled, $: cheerio.load(compiled.template.content)};
+}
+
 /**
  * @param pathToComponent
  * @return {Object}
  */
 function getAdditionalSlotProperties (pathToComponent) {
-  const slots = new Slots();
-  const file = fs.readFileSync(path.resolve(pathToComponent)).toString();
-  const {template, script} = compiler.parseComponent(file);
-  const $ = cheerio.load(template.content);
+  const slots = [];
+  const {template, script, $} = parseComponent(pathToComponent);
 
-  $('slot').each(function (index, element) {
-    const bindings = pickBindingsFromElement(element) || {};
-    const slotName = element.attribs.name || 'default';
-    const content = prettier.format($.html(element), {parser: 'html'});
+  $('slot').each((index, element) => slots.push({
+    name: element.attribs.name || 'default',
+    content: prettier.format($.html(element), {parser: 'html'}),
+    bindings: pickBindingsFromElement(element) || {},
+    // comments: getSlotBindingComments(slots, script),
+  }));
 
-    slots.add(slotName, {
-      content,
-      bindings,
-    });
-  });
+  slots.get = (name) => slots.find(slot => slot.name === name);
 
-  getSlotBindingComments(slots, script);
-
-  return slots.definitions;
+  return slots;
 }
 
-module.exports = getAdditionalSlotProperties;
+module.exports = {getAdditionalSlotProperties, pickBindingsFromElement};

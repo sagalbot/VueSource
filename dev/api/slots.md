@@ -1,0 +1,5 @@
+---
+api: slots
+---
+
+<api-slots />

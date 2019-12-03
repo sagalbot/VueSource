@@ -14,12 +14,16 @@
   "author": "Jeff Sagal",
   "license": "MIT",
   "devDependencies": {
+    "@babel/cli": "^7.7.4",
+    "@babel/core": "^7.7.4",
+    "@babel/node": "^7.7.4",
     "ast-types": "^0.13.2",
     "chalk": "^3.0.0",
     "cheerio": "^1.0.0-rc.3",
     "commitizen": "^4.0.3",
     "cz-conventional-changelog": "3.0.2",
     "jest": "^24.9.0",
+    "lodash": "^4.17.15",
     "markdown-it": "^10.0.0",
     "prettier": "^1.19.1",
     "prismjs": "^1.17.1",
@@ -27,11 +31,15 @@
     "vue-docgen-api": "^4.0.5",
     "vue-template-compiler": "^2.6.10",
     "vuepress": "^1.2.0",
-    "webpack": "^4.41.2"
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "scripts": {
+    "serve": "vuepress dev ./dev"
   }
 }
