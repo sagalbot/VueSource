@@ -46,6 +46,7 @@
   "scripts": {
     "serve": "vuepress dev ./dev",
     "test": "jest",
+    "test:debug": "node --inspect node_modules/.bin/jest --runInBand",
     "semantic-release": "semantic-release",
     "commit": "git-cz"
   }

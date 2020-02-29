@@ -15,7 +15,7 @@
           </li>
         </ul>
         <pre><code v-html="slot.rendered"></code></pre>
-        <Content :slot-key="slot.name"></Content>
+<!--        <Content :slot-key="slot.name"></Content>-->
       </li>
     </ul>
   </div>
