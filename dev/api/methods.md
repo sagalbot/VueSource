@@ -2,4 +2,4 @@
 api: methods
 ---
 
-<api-methods />
+<ApiMethods />
