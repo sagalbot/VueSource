@@ -2,4 +2,4 @@
 api: props
 ---
 
-<api-props />
+<ApiProps />

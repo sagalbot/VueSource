@@ -4,6 +4,7 @@ const cheerio = require('cheerio');
 const pick = require('lodash/pick');
 const prettier = require('prettier');
 const compiler = require('vue-template-compiler');
+const parseSingleFileComponent = require('./utils/parseSingleFileComponent');
 
 const t = require('@babel/types');
 const {parse} = require('@babel/parser');
@@ -64,19 +65,13 @@ function getSlotBindingComments (slots, {content}) {
   });
 }
 
-function parseComponent (pathToComponent) {
-  const file = fs.readFileSync(path.resolve(pathToComponent)).toString();
-  const compiled = compiler.parseComponent(file);
-  return {...compiled, $: cheerio.load(compiled.template.content)};
-}
-
 /**
  * @param pathToComponent
  * @return {Object}
  */
 function getAdditionalSlotProperties (pathToComponent) {
   const slots = [];
-  const {template, script, $} = parseComponent(pathToComponent);
+  const {template, script, $} = parseSingleFileComponent(pathToComponent);
 
   $('slot').each((index, element) => slots.push({
     name: element.attribs.name || 'default',

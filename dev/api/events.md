@@ -2,5 +2,5 @@
 api: events
 ---
 
-<api-events />
+<ApiEvents />
 

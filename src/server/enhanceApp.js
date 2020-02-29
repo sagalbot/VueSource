@@ -4,7 +4,7 @@ import ApiEvents from '../client/components/ApiEvents';
 import ApiSlots from '../client/components/ApiSlots';
 
 export default ({Vue, options, router, siteData}) => {
-  Vue.component('api-props', ApiProps);
-  Vue.component('api-slots', ApiSlots);
-  Vue.component('api-events', ApiEvents);
+  Vue.component('ApiProps', ApiProps);
+  Vue.component('ApiSlots', ApiSlots);
+  Vue.component('ApiEvents', ApiEvents);
 }

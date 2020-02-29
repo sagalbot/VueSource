@@ -2,4 +2,4 @@
 api: slots
 ---
 
-<api-slots />
+<ApiSlots />

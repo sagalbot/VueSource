@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import mixin from 'mockMixin.js';
+import mixin from "mockMixin.js";
 
 export default {
   props: {
@@ -26,6 +26,7 @@ export default {
     /**
      * Used to extrapolate different things from all sorts
      * of various inputs.
+     * @since 2.1
      */
     search: {
       type: Function,
@@ -38,10 +39,10 @@ export default {
        * @param {String} config.haystack
        * @return {String}
        */
-      default (needle, {haystack}) {
+      default(needle, { haystack }) {
         return [haystack].toString();
-      },
-    },
+      }
+    }
   },
   mixins: [mixin],
   methods: {
@@ -53,20 +54,20 @@ export default {
      * @param {Object} thing - the thing you're gonna reduce.
      * @return {String} 'something else'
      */
-    reduce (thing) {
+    reduce(thing) {
       /**
        * @event reducing
        * @param {Object} thing - the thing being reduced
        */
-      this.$emit('reducing', thing);
+      this.$emit("reducing", thing);
 
-      const reduced = 'something else';
+      const reduced = "something else";
 
       /**
        * @event reduced
        * @param {String} reduced the result of the reducing
        */
-      this.$emit('reduced', reduced);
+      this.$emit("reduced", reduced);
     },
 
     /**
@@ -75,18 +76,18 @@ export default {
      * @param {Object} doIt
      * @param {Function} doIt.now
      */
-    quickly: (doIt) => doIt.now(),
+    quickly: doIt => doIt.now()
   },
   computed: {
     /**
      * @return {{date: *, stuff: string}}
      */
-    bodySlotContent () {
+    bodySlotContent() {
       return {
-        'stuff': 'that you need to template',
-        'date': new Date,
+        stuff: "that you need to template",
+        date: new Date()
       };
-    },
-  },
+    }
+  }
 };
 </script>

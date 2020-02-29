@@ -5,8 +5,6 @@ const VueSource = [
   {src: path.resolve(__dirname, '../../tests/mocks/MockComponent.vue')},
 ];
 
-console.log(VueSource);
-
 module.exports = {
   plugins: [VueSource],
 
