@@ -2,8 +2,8 @@
   "name": "@vuesource/vuepress",
   "version": "0.1.1",
   "description": "Generates API documentation for Vue components.",
-  "main": "index.js",
-  "module": "index.js",
+  "main": "src/server/index.js",
+  "module": "src/server/index.js",
   "keywords": [
     "Vue",
     "DocGen",
@@ -17,6 +17,7 @@
     "@babel/cli": "^7.7.4",
     "@babel/core": "^7.7.4",
     "@babel/node": "^7.7.4",
+    "@babel/types": "^7.8.6",
     "@semantic-release/git": "^9.0.0",
     "ast-types": "^0.13.2",
     "chalk": "^3.0.0",
