@@ -12,7 +12,7 @@ const {green} = require('chalk');
 async function clientDynamicModules (src) {
   const docs = await generator(src);
 
-  console.log(green('✅ Generated API documentation for Select.vue'));
+  console.log(green('Generated API documentation'));
 
   return {
     name: 'api.js',
